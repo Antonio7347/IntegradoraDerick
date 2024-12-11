@@ -1,0 +1,34 @@
+package utez.edu.mx.integradoraderick.model;
+import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import utez.edu.mx.integradoraderick.model.Item;
+
+public class MostrarImagenes {
+
+    public static void main(String[] args) {
+        // Crear una ventana JFrame
+        JFrame frame = new JFrame("Verificar Imágenes");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500, 500); // Tamaño de la ventana
+        frame.setLayout(new FlowLayout());
+
+        // Selecciona un ítem para mostrar la imagen
+        Item item = Item.ITEM1; // Por ejemplo, ITEM1
+
+        // Intentar cargar la imagen del ítem seleccionado
+        try {
+            Image imagen = ImageIO.read(new URL(item.getImagenURL()));
+            ImageIcon icon = new ImageIcon(imagen);
+            JLabel label = new JLabel(icon);
+            frame.add(label);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Mostrar la ventana
+        frame.setVisible(true);
+    }
+}
