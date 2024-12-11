@@ -1,5 +1,4 @@
 package utez.edu.mx.integradoraderick.utils;
-
 public class ArrayList<T> {
     // Atributos que definen al ArrayList
     private T[] array;
