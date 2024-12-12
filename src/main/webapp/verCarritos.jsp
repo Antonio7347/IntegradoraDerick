@@ -26,130 +26,120 @@
             width: 100%;
             border-collapse: collapse;
         }
-        .details-table th,
-        .details-table td {
+        .details-table th, .details-table td {
             border: 1px solid #ddd;
-            padding: 5px;
+            padding: 8px;
+        }
+        .details-table th {
+            background-color: #f4f4f4;
         }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>Lista de Carritos Procesados</h1>
-<form action="/IntegradoraDerick_war_exploded/atenderCarritosServlet" method="get">
-    <button type="submit" class="raise">Atender carritos</button>
-</form>
+<div class="container mt-5">
+    <h1 class="mb-4">Lista de Carritos Procesados</h1>
+    <form action="/IntegradoraDerick_war_exploded/atenderCarritosServlet" method="get">
+        <button type="submit" class="btn btn-primary">Atender carritos</button>
+    </form>
 
-<%
-    // Obtener la cola de carritos desde el contexto de la aplicación
-    ColaCarritos cola = (ColaCarritos) application.getAttribute("colaCarritos");
+    <div class="row mt-4">
+        <%
+            // Obtener la cola de carritos desde el contexto de la aplicación
+            ColaCarritos cola = (ColaCarritos) application.getAttribute("colaCarritos");
 
-    if (cola != null && !cola.isEmpty()) {
-        // Convertir la cola a una lista para poder iterar
-        List<Carrito> carritos = new ArrayList<>();
-        while (!cola.isEmpty()) {
-            carritos.add(cola.atender());
-        }
+            if (cola != null && !cola.isEmpty()) {
+                // Convertir la cola a una lista para iterar
+                List<Carrito> carritos = new ArrayList<>();
+                while (!cola.isEmpty()) {
+                    carritos.add(cola.atender());
+                }
 
-        // Volver a llenar la cola con los carritos
-        for (Carrito carrito : carritos) {
-            cola.offer(carrito);
-        }
+                // Volver a llenar la cola con los carritos
+                for (Carrito carrito : carritos) {
+                    cola.offer(carrito);
+                }
 
-        // Guardar la cola actualizada en el contexto
-        application.setAttribute("colaCarritos", cola);
+                // Guardar la cola actualizada en el contexto
+                application.setAttribute("colaCarritos", cola);
 
-        // Mostrar los carritos
-        for (Carrito carrito : carritos) {
-%>
-<table>
-    <thead>
-    <tr>
-        <th>Detalles Completos del Carrito</th>
-    </tr>
-    </thead>
-    <tbody>
-
-    <tr>
-        <td>
-            <h2>Carrito #<%= carrito.getId() %></h2>
-            <table class="details-table">
+                // Mostrar los carritos
+                for (Carrito carrito : carritos) {
+        %>
+        <div class="col-12 mb-5">
+            <table class="details-table mb-3">
                 <tr>
-                    <th>Propiedad</th>
-                    <th>Valor</th>
-                </tr>
-                <tr>
-                    <td>ID del Carrito</td>
+                    <th>ID del Carrito</th>
                     <td><%= carrito.getId() %></td>
                 </tr>
                 <tr>
-                    <td>Persona</td>
+                    <th>Persona</th>
                     <td><%= carrito.getPersona() %></td>
                 </tr>
                 <tr>
-                    <td>Número de Items</td>
+                    <th>Número de Items</th>
                     <td><%= carrito.getItems().size() %></td>
                 </tr>
-                <tr>
-                    <td colspan="2">
-                        <h3>Detalles de Items</h3>
-                        <table class="details-table">
-                            <tr>
-                                <th>Índice</th>
-                                <th>Nombre</th>
-                                <th>toString()</th>
-                            </tr>
-                            <%
-                                int index = 1;
-                                for (Item item : carrito.getItems()) {
-                            %>
-                            <tr>
-                                <td><%= index++ %></td>
-                                <td><%= item.getNombre() %></td>
-                                <td><%= item.toString() %></td>
-                            </tr>
-                            <% } %>
-                        </table>
-                    </td>
-                </tr>
             </table>
-        </td>
-    </tr>
-    </tbody>
-</table>
 
-<%
-    }
-    } else {
-%>
-<h1>No hay carritos procesados. </h1>
-<%
-    }
-%>
-<div class="position-fixed bottom-0 start-0 p-3">
-    <% if ((Carrito) request.getSession().getAttribute("carrito") != null) {%>
-    <div class="alert alert-primary" role="alert">
-        <%Carrito carritoActual = (Carrito) request.getSession().getAttribute("carrito");%>
-
-        <h4 class="alert-heading"><%="Se va a atender el carrito con ID: " + carritoActual.getId()%></h4>
-        <ul>
+            <h3>Productos</h3>
+            <div class="row">
+                <%
+                    int index = 1;
+                    for (Item item : carrito.getItems()) {
+                %>
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <img src="<%= item.getRutaImagen() %>" class="img-fluid" alt="<%= item.getNombre() %>">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= item.getNombre() %></h5>
+                            <p class="card-text">Precio: $<%= item.getPrecio() %></p>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
         <%
-            double total = 0.0;
-            for (int i = 0; i < carritoActual.getItems().size(); i++){%>
-            <li><%="Escaneando: " + carritoActual.getItems().peek().getNombre()%></li>
-            <%total+=carritoActual.getItems().pop().getPrecio();}%>
-        </ul>
-        <p>
-        <hr>
-        <p><%="Se cobró: " + total + "..."%></p>
-        <p class="mb-0"><%="Se atendio al carrito con ID: "+carritoActual.getId()%></p>
-        <p class="mb-0"><%="Atendido por: "+carritoActual.getPersona()%></p>
-        <p class="mb-0"><%="Gracias por su compra"%></p>
+            }
+        } else {
+        %>
+        <div class="col-12">
+            <div class="alert alert-info">No hay carritos procesados.</div>
+        </div>
+        <%
+            }
+        %>
     </div>
-    <%}%>
+
+    <div class="position-fixed bottom-0 start-0 p-3">
+        <% if ((Carrito) request.getSession().getAttribute("carrito") != null) { %>
+        <div class="alert alert-primary" role="alert">
+            <% Carrito carritoActual = (Carrito) request.getSession().getAttribute("carrito"); %>
+
+            <h4 class="alert-heading">Se va a atender el carrito con ID: <%= carritoActual.getId() %></h4>
+            <ul>
+                <%
+                    double total = 0.0;
+                    for (int i = 0; i < carritoActual.getItems().size(); i++) {
+                %>
+                <li>Escaneando: <%= carritoActual.getItems().peek().getNombre() %></li>
+                <%
+                        total += carritoActual.getItems().pop().getPrecio();
+                    }
+                %>
+            </ul>
+            <hr>
+            <p>Se cobro: $<%= total %></p>
+            <p>Atendido por: <%= carritoActual.getPersona() %></p>
+            <p>Gracias por su compra</p>
+        </div>
+        <% } %>
+    </div>
+
+    <% request.getSession().removeAttribute("carrito"); %>
 </div>
-<%
-    request.getSession().removeAttribute("carrito");
-%>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
