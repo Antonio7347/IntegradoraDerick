@@ -66,6 +66,7 @@
                 // Mostrar los carritos
                 for (Carrito carrito : carritos) {
         %>
+
         <div class="col-12 mb-5">
             <table class="details-table mb-3">
                 <tr>

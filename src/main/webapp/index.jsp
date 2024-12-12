@@ -139,9 +139,7 @@
 <body>
 <div class="text-center">
     <h1 class="display-4" >¡Bienvenido a Los Frutilupis! </h1>
-
     <div class="button-container">
-
         <form action="/IntegradoraDerick_war_exploded/llenarCarritoServlet" method="post">
             <button type="submit" class="fill">Añadir al carrito</button>
         </form>
