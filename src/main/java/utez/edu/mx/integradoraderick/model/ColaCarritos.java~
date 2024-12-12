@@ -2,6 +2,9 @@ package utez.edu.mx.integradoraderick.model;
 
 import utez.edu.mx.integradoraderick.utils.Queue;
 
+import java.util.LinkedList;
+
+
 public class ColaCarritos {
     private Queue<Carrito> fila;
 
@@ -25,15 +28,7 @@ public class ColaCarritos {
         return fila.isEmpty();
     }
 
-    public Queue<Carrito> getFila() {
-        return fila;
-    }
-
-    public void setFila(Queue<Carrito> fila) {
-        this.fila = fila;
-    }
-
-    public Queue<Carrito> getCarritos() {
+    public Object getCarritos() {
         return fila;
     }
 }
