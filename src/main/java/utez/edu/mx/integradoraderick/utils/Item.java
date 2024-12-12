@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public enum Item {
 
-    ITEM1(1, "Camiseta", 12.5, "ruta/a/imagen1.jpg"),
+    ITEM1(1, "Camiseta", 12.5, "../"),
     ITEM2(2, "Pantalones", 25.0, "ruta/a/imagen2.jpg"),
     ITEM3(3, "Zapatos Deportivos", 45.0, "ruta/a/imagen3.jpg"),
     ITEM4(4, "Sombrero", 18.0, "ruta/a/imagen4.jpg"),

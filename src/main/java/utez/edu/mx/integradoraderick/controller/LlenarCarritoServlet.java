@@ -3,9 +3,9 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import utez.edu.mx.integradoraderick.model.Carrito;
+import utez.edu.mx.integradoraderick.model.ColaCarritos;
 import utez.edu.mx.integradoraderick.model.Persona;
 import utez.edu.mx.integradoraderick.utils.Item;
-import utez.edu.mx.integradoraderick.utils.Queue;
 
 import java.io.IOException;
 import java.util.Random;
@@ -14,7 +14,7 @@ import java.util.Random;
 public class LlenarCarritoServlet extends HttpServlet {
     private static final Random random = new Random();
 
-    Queue<Carrito> fila = new Queue<>();
+    ColaCarritos fila = new ColaCarritos();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,12 +29,10 @@ public class LlenarCarritoServlet extends HttpServlet {
             System.out.println("Item: " + randomItem.toString());
             carrito.agregarAlCarrito(randomItem);
         }
+        fila.offer(carrito);
 
-        HttpSession session = request.getSession();
-        session.setAttribute("carritoActual", carrito);
-
-        request.setAttribute("carrito", carrito);
-        request.getRequestDispatcher("/llenarCarrito.jsp").forward(request, response);
+        request.setAttribute("fila", fila);
+        response.sendRedirect("index.jsp");
     }
 
     public static Persona getRandomPersona() {
