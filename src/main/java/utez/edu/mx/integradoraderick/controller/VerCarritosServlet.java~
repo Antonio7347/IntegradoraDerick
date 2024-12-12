@@ -23,6 +23,16 @@ public class VerCarritosServlet extends HttpServlet {
         if (colaCarritos == null) {
             colaCarritos = new ColaCarritos();
 
+            // Agregar datos de prueba
+            Carrito carrito1 = new Carrito(1, new Persona("Juan Pérez"));
+            carrito1.agregarAlCarrito(Item.ITEM1);
+            carrito1.agregarAlCarrito(Item.ITEM2);
+            colaCarritos.offer(carrito1);
+
+            Carrito carrito2 = new Carrito(2, new Persona("María López"));
+            carrito2.agregarAlCarrito(Item.ITEM3);
+            colaCarritos.offer(carrito2);
+
             // Guardar la cola en el contexto
             context.setAttribute("colaCarritos", colaCarritos);
         }
