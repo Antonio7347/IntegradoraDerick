@@ -12,7 +12,7 @@ import java.io.IOException;
 public class ProcesarSiguienteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ServletContext context = getServletContext();
+        /*ServletContext context = getServletContext();
         ColaCarritos cola = (ColaCarritos) context.getAttribute("colaCarritos");
 
         if (cola == null) {
@@ -27,7 +27,7 @@ public class ProcesarSiguienteServlet extends HttpServlet {
             request.setAttribute("mensaje", "No hay carritos por procesar.");
         }
 
-        request.getRequestDispatcher("procesarCarritos.jsp").forward(request, response);
+        request.getRequestDispatcher("procesarCarritos.jsp").forward(request, response);*/
     }
 }
 

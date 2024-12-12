@@ -141,7 +141,7 @@
     <h1 class="display-4">¡Bienvenido a Los Frutilupis!</h1>
 
     <div class="button-container">
-        <form action="../llenarCarritoServlet" method="post">
+        <form action="//LlenarCarritoServlet" method="post">
             <button type="submit" class="raise">Añadir al carrito</button>
         </form>
         <form action="../verCarritosServlet" method="get">

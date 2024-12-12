@@ -6,29 +6,29 @@ import java.util.LinkedList;
 
 
 public class ColaCarritos {
-    private Queue<Carrito> cola;
+    private Queue<Carrito> fila;
 
     public ColaCarritos() {
-        this.cola = new Queue<>();
+        this.fila = new Queue<>();
     }
 
     public void offer(Carrito carrito) {
-        cola.offer(carrito);
+        fila.offer(carrito);
     }
 
-    public Carrito poll() {
-        return cola.poll();
+    public Carrito atender() {
+        return fila.poll();
     }
 
     public Carrito peek() {
-        return cola.peek();
+        return fila.peek();
     }
 
     public boolean isEmpty() {
-        return cola.isEmpty();
+        return fila.isEmpty();
     }
 
     public Object getCarritos() {
-        return cola;
+        return fila;
     }
 }
