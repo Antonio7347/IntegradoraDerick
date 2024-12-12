@@ -141,10 +141,10 @@
     <h1 class="display-4">¡Bienvenido a Los Frutilupis!</h1>
 
     <div class="button-container">
-        <form action="../llenarCarritoServlet" method="post">
+        <form action="/llenarCarritoServlet" method="post">
             <button type="submit" class="raise">Añadir al carrito</button>
         </form>
-        <form action="../verCarritosServlet" method="get">
+        <form action="/verCarritosServlet" method="get">
             <button type="submit" class="raise">Visualizar carritos</button>
         </form>
     </div>
