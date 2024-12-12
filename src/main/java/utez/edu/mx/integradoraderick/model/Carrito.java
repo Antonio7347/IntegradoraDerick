@@ -8,10 +8,10 @@ import java.util.Stack;
 
 public class Carrito {
     private int id;
-    private String persona;
+    private Persona persona;
     private Stack<Item> items;
 
-    public Carrito(int id, String persona) {
+    public Carrito(int id, Persona persona) {
         this.id = id;
         this.persona = persona;
         this.items = new Stack<>();
@@ -21,24 +21,28 @@ public class Carrito {
         return id;
     }
 
-    public String getPersona() {
+    public Persona getPersona() {
         return persona;
     }
 
+    // Obtenemos los items del carrito
     public Stack<Item> getItems() {
         return items;
     }
 
-    public void addItem(Item item) {
-        this.items.add(item);
+    // Agregamos el item al carrito
+    public void agregarAlCarrito(Item item) {
+        this.items.push(item);
     }
 
-    public void removeItem(int index) {
-        this.items.remove(index);
+    // Sacamos el item del Stack (del carrito)
+    public void escanearProducto() {
+        this.items.pop();
     }
 
-    public Item getItem(int index) {
-        return this.items.get(index);
+    // Agarramos un item pero sin scanearlo
+    public Item verItem() {
+        return this.items.peek();
     }
 
     @Override
