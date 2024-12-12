@@ -1,16 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Joseb
-  Date: 10/12/2024
-  Time: 11:41 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
-<%--<%@ page import="your.package.Carrito" %>--%>
 <%@ page import="utez.edu.mx.integradoraderick.model.Carrito" %>
-<%--<%@ page import="your.package.Item" %>--%>
 <%@ page import="utez.edu.mx.integradoraderick.utils.Item" %>
+<%@ page import="utez.edu.mx.integradoraderick.model.ColaCarritos" %>
 <html>
 <head>
     <title>Carritos Procesados</title>
@@ -19,17 +11,14 @@
             border-collapse: collapse;
             width: 100%;
         }
-
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
         }
-
         th {
             background-color: #f4f4f4;
             text-align: left;
         }
-
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
@@ -38,35 +27,44 @@
 <body>
 <h1>Lista de Carritos Procesados</h1>
 
-<c:if test="${not empty carritos}">
-    <table>
-        <thead>
-        <tr>
-            <th>ID del Carrito</th>
-            <th>Persona</th>
-            <th>Items</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="carrito" items="${carritos}">
-            <tr>
-                <td>${carrito.id}</td>
-                <td>${carrito.persona}</td>
-                <td>
-                    <ul>
-                        <c:forEach var="item" items="${carrito.items}">
-                            <li>${item.nombre} - Cantidad: ${item.cantidad}</li>
-                        </c:forEach>
-                    </ul>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-</c:if>
+<table>
+    <thead>
+    <tr>
+        <th>ID del Carrito</th>
+        <th>Persona</th>
+        <th>Items</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%
+        // Obtener la cola de carritos pasada por el servlet
+        ColaCarritos cola = (ColaCarritos) request.getAttribute("colaCarritos");
 
-<c:if test="${empty carritos}">
-    <p>No hay carritos procesados.</p>
-</c:if>
+        if (cola != null && !cola.isEmpty()) {
+            for (Carrito carrito : cola.getCarritos()) {
+    %>
+    <tr>
+        <td><%= carrito.getIdCarrito() %></td>
+        <td><%= carrito.getPersona() %></td>
+        <td>
+            <ul>
+                <% for (Item item : carrito.getItems()) { %>
+                <li><%= item.getNombre() %> - <%= item.getCantidad() %></li>
+                <% } %>
+            </ul>
+        </td>
+    </tr>
+    <%
+        }
+    } else {
+    %>
+    <tr>
+        <td colspan="3">No hay carritos procesados.</td>
+    </tr>
+    <%
+        }
+    %>
+    </tbody>
+</table>
 </body>
 </html>
