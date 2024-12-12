@@ -3,18 +3,16 @@ package utez.edu.mx.integradoraderick.model;
 import utez.edu.mx.integradoraderick.utils.ArrayList;
 import utez.edu.mx.integradoraderick.utils.Item;
 
-import java.util.Stack;
-
 
 public class Carrito {
     private int id;
     private String persona;
-    private Stack<Item> items;
+    private ArrayList<Item> items;
 
     public Carrito(int id, String persona) {
         this.id = id;
         this.persona = persona;
-        this.items = new Stack<>();
+        this.items = new ArrayList<>();
     }
 
     public int getId() {
@@ -25,7 +23,7 @@ public class Carrito {
         return persona;
     }
 
-    public Stack<Item> getItems() {
+    public ArrayList<Item> getItems() {
         return items;
     }
 

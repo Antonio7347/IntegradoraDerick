@@ -14,7 +14,7 @@ public class LlenarCarritoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = random.nextInt(50);
+        int id = random.nextInt(1000);
         String persona = "Persona " + (random.nextInt(100) + 1);
         Carrito carrito = new Carrito(id, persona);
 
