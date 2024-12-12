@@ -45,7 +45,8 @@ public class LlenarCarritoServlet extends HttpServlet {
         context.setAttribute("colaCarritos", colaCarritos);
 
         // Redirigir a la página de ver carritos
-        response.sendRedirect("view/verCarritos.jsp");
+//        response.sendRedirect("/index.jsp");
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
     public static Persona getRandomPersona() {

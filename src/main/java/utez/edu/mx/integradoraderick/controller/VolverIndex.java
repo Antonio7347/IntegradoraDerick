@@ -10,8 +10,8 @@ import utez.edu.mx.integradoraderick.utils.Item;
 
 import java.io.IOException;
 
-@WebServlet("/verCarritos")
-public class VerCarritosServlet extends HttpServlet {
+@WebServlet("/index")
+public class VolverIndex extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
