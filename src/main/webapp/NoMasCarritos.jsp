@@ -139,11 +139,9 @@
 <body>
 <div class="text-center">
     <h1 class="display-4">Gracias por tu compra!!!</h1>
-
     <div class="button-container">
-        <form action="/IntegradoraDerick_war_exploded/verCarritos" method="get">
+        <form action="/IntegradoraDerick_war_exploded/index" method="get">
             <button type="submit" class="raise">Volver al inicio</button>
-        </form>
         </form>
     </div>
 </div>

@@ -15,23 +15,7 @@ public class VolverIndex extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Obtener la cola de carritos desde el contexto de la aplicación
-        ServletContext context = getServletContext();
-        ColaCarritos colaCarritos = (ColaCarritos) context.getAttribute("colaCarritos");
-
-        // Si no existe la cola, inicializarla
-        if (colaCarritos == null) {
-            colaCarritos = new ColaCarritos();
-
-            // Guardar la cola en el contexto
-            context.setAttribute("colaCarritos", colaCarritos);
-        }
-
-        // Pasar la cola al JSP
-        request.setAttribute("colaCarritos", colaCarritos);
-
-        // Redirigir al JSP
-        request.getRequestDispatcher("/verCarritos.jsp").forward(request, response);
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }
 
