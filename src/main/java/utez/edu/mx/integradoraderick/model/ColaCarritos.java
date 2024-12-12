@@ -6,10 +6,10 @@ import java.util.LinkedList;
 
 
 public class ColaCarritos {
-    private Queue<Carrito> fila;
+    private static Queue<Carrito> fila;
 
     public ColaCarritos() {
-        this.fila = new Queue<>();
+        fila = new Queue<>();
     }
 
     public void offer(Carrito carrito) {
