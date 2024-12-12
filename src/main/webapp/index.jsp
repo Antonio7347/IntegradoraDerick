@@ -103,8 +103,8 @@
         }
 
         body {
-            color: #fff;
-            background: #17181c;
+            color: #000000;
+            background: #ffffff;
             font: 300 1em 'Fira Sans', sans-serif;
             -webkit-box-pack: center;
             justify-content: center;
@@ -138,16 +138,15 @@
 </head>
 <body>
 <div class="text-center">
-    <h1 class="display-4">¡Bienvenido a Los Frutilupis!</h1>
+    <h1 class="display-4" >¡Bienvenido a Los Frutilupis! </h1>
 
     <div class="button-container">
 
         <form action="/IntegradoraDerick_war_exploded/llenarCarritoServlet" method="post">
-            <button type="submit" class="raise">Añadir al carrito</button>
+            <button type="submit" class="fill">Añadir al carrito</button>
         </form>
         <form action="/IntegradoraDerick_war_exploded/verCarritos" method="get">
-            <button type="submit" class="raise">Visualizar carritos</button>
-        </form>
+            <button type="submit" class="fill">Visualizar carritos</button>
         </form>
     </div>
 </div>

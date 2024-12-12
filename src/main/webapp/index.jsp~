@@ -138,10 +138,16 @@
 </head>
 <body>
 <div class="text-center">
-    <h1 class="display-4">Gracias por tu compra!!!</h1>
+    <h1 class="display-4" >¡Bienvenido a Los Frutilupis! </h1>
+
     <div class="button-container">
-        <form action="/IntegradoraDerick_war_exploded/index" method="get">
-            <button type="submit" class="fill">Volver al inicio</button>
+
+        <form action="/IntegradoraDerick_war_exploded/llenarCarritoServlet" method="post">
+            <button type="submit" class="fill">Añadir al carrito</button>
+        </form>
+        <form action="/IntegradoraDerick_war_exploded/verCarritos" method="get">
+            <button type="submit" class="fill">Visualizar carritos</button>
+        </form>
         </form>
     </div>
 </div>
