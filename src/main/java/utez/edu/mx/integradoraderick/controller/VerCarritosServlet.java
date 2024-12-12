@@ -31,7 +31,7 @@ public class VerCarritosServlet extends HttpServlet {
         request.setAttribute("colaCarritos", colaCarritos);
 
         // Redirigir al JSP
-        request.getRequestDispatcher("verCarritos.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/verCarritos.jsp").forward(request, response);
     }
 }
 

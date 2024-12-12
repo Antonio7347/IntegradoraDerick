@@ -14,10 +14,18 @@ import java.util.Random;
 public class LlenarCarritoServlet extends HttpServlet {
     private static final Random random = new Random();
 
-    ColaCarritos fila = new ColaCarritos();
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Obtener la cola de carritos desde el contexto de la aplicación
+        ServletContext context = getServletContext();
+        ColaCarritos colaCarritos = (ColaCarritos) context.getAttribute("colaCarritos");
+
+        // Si no existe la cola, inicializarla
+        if (colaCarritos == null) {
+            colaCarritos = new ColaCarritos();
+        }
+
+        // Crear un nuevo carrito
         Carrito carrito = new Carrito(random.nextInt(1000)+1, getRandomPersona());
         System.out.println("Carrito: " + carrito.getId());
 
@@ -29,10 +37,15 @@ public class LlenarCarritoServlet extends HttpServlet {
             System.out.println("Item: " + randomItem.toString());
             carrito.agregarAlCarrito(randomItem);
         }
-        fila.offer(carrito);
 
-        request.setAttribute("fila", fila);
-        response.sendRedirect("index.jsp");
+        // Agregar el carrito a la cola
+        colaCarritos.offer(carrito);
+
+        // Guardar la cola actualizada en el contexto
+        context.setAttribute("colaCarritos", colaCarritos);
+
+        // Redirigir a la página de ver carritos
+        response.sendRedirect("view/verCarritos.jsp");
     }
 
     public static Persona getRandomPersona() {
