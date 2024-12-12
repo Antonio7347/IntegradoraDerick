@@ -142,14 +142,12 @@
 
     <div class="button-container">
 
-        <form action="/llenarCarritoServlet" method="post">
-
-        <form action="//LlenarCarritoServlet" method="post">
-
+        <form action="/IntegradoraDerick_war_exploded/llenarCarritoServlet" method="post">
             <button type="submit" class="raise">Añadir al carrito</button>
         </form>
-        <form action="/verCarritosServlet" method="get">
+        <form action="/IntegradoraDerick_war_exploded/verCarritosServlet" method="get">
             <button type="submit" class="raise">Visualizar carritos</button>
+        </form>
         </form>
     </div>
 </div>
