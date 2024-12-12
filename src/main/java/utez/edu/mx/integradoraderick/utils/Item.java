@@ -13,7 +13,7 @@ public enum Item {
     ITEM4(4, "Sombrero", 18.0, "img/sombrero.jpeg"),
     ITEM5(5, "Reloj de pulsera", 35.0, "img/relojPulsera.jpeg"),
     ITEM6(6, "Gafas de sol", 15.0, "img/gafasSol.jpeg"),
-    ITEM7(7, "Mochila", 22.0, "img/Mochila.jpeg"),
+    ITEM7(7, "Mochila", 22.0, "img/mochila.jpeg"),
     ITEM8(8, "Chaqueta de invierno", 40.0, "img/chaquetaInvierno.jpeg"),
     ITEM9(9, "Botas", 30.0, "img/botas.jpeg"),
     ITEM10(10, "Pantalones cortos", 12.0, "img/pantalonesCortos.jpeg"),
